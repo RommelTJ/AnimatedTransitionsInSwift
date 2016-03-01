@@ -8,11 +8,14 @@
 
 import UIKit
 
-class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+class TransitionManager: NSObject {
+    //Code not necessary in our implementation.
+}
 
-    // MARK: UIViewControllerAnimatedTransitioning protocol methods
+// MARK: UIViewControllerAnimatedTransitioning protocol methods
+extension TransitionManager: UIViewControllerAnimatedTransitioning {
     
-    // animate a change from one viewcontroller to another
+    //Animate a change from one ViewController to another.
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         //Get reference to our fromView, toView and the container view that we should perform the transition in.
         let container = transitionContext.containerView()
@@ -35,8 +38,8 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
         let duration = self.transitionDuration(transitionContext)
         
         //Perform the animation.
-        //For this example, just slid both fromView and toView to the left at the same time meaning fromView is 
-        //pushed off the screen and toView slides into view we also use the block animation usingSpringWithDamping 
+        //For this example, just slid both fromView and toView to the left at the same time meaning fromView is
+        //pushed off the screen and toView slides into view we also use the block animation usingSpringWithDamping
         //for a little bounce.
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
             
@@ -55,16 +58,15 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
         return 0.5
     }
     
+}
+
+// MARK: UIViewControllerTransitioningDelegate protocol methods
+extension TransitionManager: UIViewControllerTransitioningDelegate {
     
-    // MARK: UIViewControllerTransitioningDelegate protocol methods
-    
-    // return the animataor when presenting a viewcontroller
-    // remmeber that an animator (or animation controller) is any object that aheres to the UIViewControllerAnimatedTransitioning protocol
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self
     }
     
-    // return the animator used when dismissing from a viewcontroller
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self
     }

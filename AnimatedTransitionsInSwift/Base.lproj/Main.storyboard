@@ -35,7 +35,7 @@
                                 <rect key="frame" x="20" y="513" width="560" height="30"/>
                                 <state key="normal" title="Show"/>
                                 <connections>
-                                    <segue destination="gzG-J4-AEI" kind="custom" identifier="firstCustomSegue" customClass="CustomStoryboardSegue" customModule="AnimatedTransitionsInSwift" customModuleProvider="target" id="44k-Ic-x7u"/>
+                                    <segue destination="gzG-J4-AEI" kind="presentation" identifier="firstCustomSegue" id="44k-Ic-x7u"/>
                                 </connections>
                             </button>
                         </subviews>
