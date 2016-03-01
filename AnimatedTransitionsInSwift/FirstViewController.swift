@@ -18,6 +18,10 @@ class FirstViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    //IBAction required to use an Exit Segue.
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        //Code not necessary in our implementation.
+    }
 
 }
 
