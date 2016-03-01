@@ -88,7 +88,7 @@
         <!--Third-->
         <scene sceneID="pl7-75-Y7w">
             <objects>
-                <viewController id="giu-gH-1cO" sceneMemberID="viewController">
+                <viewController id="giu-gH-1cO" customClass="ThirdViewController" customModule="AnimatedTransitionsInSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EQv-YR-VcH"/>
                         <viewControllerLayoutGuide type="bottom" id="IIj-rr-SoT"/>
