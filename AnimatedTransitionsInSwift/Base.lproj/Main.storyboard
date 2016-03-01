@@ -35,7 +35,7 @@
                                 <rect key="frame" x="20" y="513" width="560" height="30"/>
                                 <state key="normal" title="Show"/>
                                 <connections>
-                                    <segue destination="gzG-J4-AEI" kind="custom" id="44k-Ic-x7u"/>
+                                    <segue destination="gzG-J4-AEI" kind="custom" identifier="firstCustomSegue" customClass="CustomStoryboardSegue" customModule="AnimatedTransitionsInSwift" customModuleProvider="target" id="44k-Ic-x7u"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -68,8 +68,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXc-sq-5IO">
-                                <rect key="frame" x="20" y="550" width="560" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXc-sq-5IO">
+                                <rect key="frame" x="20" y="513" width="560" height="30"/>
                                 <state key="normal" title="Hide"/>
                                 <connections>
                                     <segue destination="yVY-7z-ZJS" kind="unwind" unwindAction="unwindToViewController:" id="bhI-bh-ame"/>
@@ -78,7 +78,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="M7f-bn-HA4" firstAttribute="top" secondItem="YXc-sq-5IO" secondAttribute="bottom" constant="20" id="TAD-C7-4ES"/>
+                            <constraint firstItem="M7f-bn-HA4" firstAttribute="top" secondItem="YXc-sq-5IO" secondAttribute="bottom" constant="8" id="TAD-C7-4ES"/>
                             <constraint firstItem="YXc-sq-5IO" firstAttribute="leading" secondItem="n75-V1-es2" secondAttribute="leadingMargin" id="U8p-q3-XNh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YXc-sq-5IO" secondAttribute="trailing" id="aa9-5c-Kyb"/>
                         </constraints>
