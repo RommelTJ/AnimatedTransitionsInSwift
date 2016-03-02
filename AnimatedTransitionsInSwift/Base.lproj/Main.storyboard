@@ -130,17 +130,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="USZ-zl-YOj" userLabel="Photo Icon">
-                                        <rect key="frame" x="415" y="0.0" width="125" height="125"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="USZ-zl-YOj" secondAttribute="height" multiplier="1:1" id="zsB-Bf-Ej0"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="zsB-Bf-Ej0"/>
-                                            </mask>
-                                        </variation>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01M-8E-Fno">
                                         <rect key="frame" x="415" y="125" width="125" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -205,6 +194,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="USZ-zl-YOj" userLabel="Photo Icon">
+                                        <rect key="frame" x="415" y="0.0" width="125" height="125"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="USZ-zl-YOj" secondAttribute="height" multiplier="1:1" id="zsB-Bf-Ej0"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="zsB-Bf-Ej0"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -261,6 +261,20 @@
                             <constraint firstItem="Msk-Ig-M7J" firstAttribute="top" secondItem="5x7-JE-rXr" secondAttribute="bottom" constant="20" id="t3d-b5-gxa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="audioIcon" destination="lUa-1f-Bgc" id="Qj2-Nd-cMR"/>
+                        <outlet property="audioLabel" destination="5ju-VI-5RE" id="FW5-ie-nD8"/>
+                        <outlet property="chatIcon" destination="XNu-Yo-Fvl" id="7WS-y5-cnY"/>
+                        <outlet property="chatLabel" destination="A3z-z3-aQf" id="rGP-lS-4GR"/>
+                        <outlet property="linkIcon" destination="Zzi-zu-W5u" id="z7t-2o-c11"/>
+                        <outlet property="linkLabel" destination="Lgg-ap-7ud" id="BAt-lE-sXN"/>
+                        <outlet property="photoIcon" destination="USZ-zl-YOj" id="WGJ-nk-MtQ"/>
+                        <outlet property="photoLabel" destination="01M-8E-Fno" id="Xh0-fp-PxA"/>
+                        <outlet property="quoteIcon" destination="DmW-vc-UMP" id="jMJ-bG-D7b"/>
+                        <outlet property="quoteLabel" destination="7m9-um-iNH" id="Gmw-w6-7ZS"/>
+                        <outlet property="textIcon" destination="SEM-lq-aP7" id="VW8-wV-BL9"/>
+                        <outlet property="textLabel" destination="USN-hh-Qpt" id="Chs-ce-tvx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOO-yD-GHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rkY-MG-0fM" userLabel="Exit" sceneMemberID="exit"/>

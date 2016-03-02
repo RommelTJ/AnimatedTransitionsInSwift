@@ -21,61 +21,109 @@ extension SecondTransitionManager: UIViewControllerAnimatedTransitioning {
         
         //Get reference to our fromView, toView and the container view that we should perform the transition in.
         let container = transitionContext.containerView()
-        let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
-        let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
         
-        //Set up from 2D transforms that we'll use in the animation.
-        let π : CGFloat = 3.14159265359
+        //Create a tuple of views.
+        let screens: (fromView: UIViewController, toView: UIViewController) =
+            (transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!,
+            transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!)
         
-        let offScreenRotateIn = CGAffineTransformMakeRotation(-π/2)
-        let offScreenRotateOut = CGAffineTransformMakeRotation(π/2)
+        //Assign references to our MenuViewController and the 'bottom' view controller from the tuple.
+        //The MenuViewController will alternate between the fromView and toView depending if we're presenting or dismissing.
+        let menuViewController = !self.isPresenting ? screens.fromView as! MenuViewController : screens.toView as! MenuViewController
+        let bottomViewController = !self.isPresenting ? screens.toView as UIViewController : screens.fromView as UIViewController
         
-        //Start the toView to the right of the screen.
-        if isPresenting {
-            toView.transform = offScreenRotateIn
-        } else {
-            toView.transform = offScreenRotateOut
+        let menuView = menuViewController.view
+        let bottomView = bottomViewController.view
+        
+        //Prepare menu items to slide in.
+        if (self.isPresenting){
+            self.offStageMenuController(menuViewController)
         }
         
-        //Set the anchor point so that rotations happen from the top-left corner
-        toView.layer.anchorPoint = CGPoint(x:0, y:0)
-        fromView.layer.anchorPoint = CGPoint(x:0, y:0)
+        //Add both views to our container View.
+        container!.addSubview(bottomView)
+        container!.addSubview(menuView)
         
-        //Updating the anchor point also moves the position to we have to move the center position to the top-left to compensate
-        toView.layer.position = CGPoint(x:0, y:0)
-        fromView.layer.position = CGPoint(x:0, y:0)
-        
-        //Add both views to our view controller.
-        container!.addSubview(toView)
-        container!.addSubview(fromView)
-        
-        //Get the duration of the animation.
-        //DON'T just type '0.5s'.
         let duration = self.transitionDuration(transitionContext)
         
         //Perform the animation.
-        //For this example, just slid both fromView and toView to the left at the same time meaning fromView is
-        //pushed off the screen and toView slides into view we also use the block animation usingSpringWithDamping
-        //for a little bounce.
-        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
+        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
             
-            if self.isPresenting {
-                fromView.transform = offScreenRotateIn
-            } else {
-                fromView.transform = offScreenRotateOut
+            if (self.isPresenting){
+                self.onStageMenuController(menuViewController) // onstage items: slide in
             }
-            toView.transform = CGAffineTransformIdentity
+            else {
+                self.offStageMenuController(menuViewController) // offstage items: slide out
+            }
             
             }, completion: { finished in
-                // tell our transitionContext object that we've finished animating
+                //Tell our transitionContext object that we've finished animating
                 transitionContext.completeTransition(true)
                 
+                //We have to manually add our 'toView' back.
+                UIApplication.sharedApplication().keyWindow!.addSubview(screens.toView.view)
         })
     }
     
     // return how many seconds the transiton animation will take
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.5
+    }
+    
+    func offStage(amount: CGFloat) -> CGAffineTransform {
+        return CGAffineTransformMakeTranslation(amount, 0)
+    }
+    
+    func offStageMenuController(menuViewController: MenuViewController){
+        //Prepare menu to fade out.
+        menuViewController.view.alpha = 0
+        
+        //Setup paramaters for 2D transitions for animations.
+        let topRowOffset: CGFloat = 300
+        let middleRowOffset: CGFloat = 150
+        let bottomRowOffset: CGFloat = 50
+        
+        menuViewController.textIcon.transform = self.offStage(-topRowOffset)
+        menuViewController.textLabel.transform = self.offStage(-topRowOffset)
+        
+        menuViewController.photoIcon.transform = self.offStage(topRowOffset)
+        menuViewController.photoLabel.transform = self.offStage(topRowOffset)
+        
+        menuViewController.quoteIcon.transform = self.offStage(-middleRowOffset)
+        menuViewController.quoteLabel.transform = self.offStage(-middleRowOffset)
+        
+        menuViewController.linkIcon.transform = self.offStage(middleRowOffset)
+        menuViewController.linkLabel.transform = self.offStage(middleRowOffset)
+        
+        menuViewController.chatIcon.transform = self.offStage(-bottomRowOffset)
+        menuViewController.chatLabel.transform = self.offStage(-bottomRowOffset)
+        
+        menuViewController.audioIcon.transform = self.offStage(bottomRowOffset)
+        menuViewController.audioLabel.transform = self.offStage(bottomRowOffset)
+
+    }
+    
+    func onStageMenuController(menuViewController: MenuViewController){
+        //Prepare menu to fade in.
+        menuViewController.view.alpha = 1
+        
+        menuViewController.textIcon.transform = CGAffineTransformIdentity
+        menuViewController.textLabel.transform = CGAffineTransformIdentity
+        
+        menuViewController.photoIcon.transform = CGAffineTransformIdentity
+        menuViewController.photoLabel.transform = CGAffineTransformIdentity
+        
+        menuViewController.quoteIcon.transform = CGAffineTransformIdentity
+        menuViewController.quoteLabel.transform = CGAffineTransformIdentity
+        
+        menuViewController.linkIcon.transform = CGAffineTransformIdentity
+        menuViewController.linkLabel.transform = CGAffineTransformIdentity
+        
+        menuViewController.chatIcon.transform = CGAffineTransformIdentity
+        menuViewController.chatLabel.transform = CGAffineTransformIdentity
+        
+        menuViewController.audioIcon.transform = CGAffineTransformIdentity
+        menuViewController.audioLabel.transform = CGAffineTransformIdentity
     }
     
 }

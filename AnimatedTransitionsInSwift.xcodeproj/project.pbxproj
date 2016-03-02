@@ -45,6 +45,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77E26C601C878EBC005B700A /* First */ = {
+			isa = PBXGroup;
+			children = (
+				77F89BFA1C863B6F0040775B /* TransitionManager.swift */,
+				77F89BE61C86330A0040775B /* FirstViewController.swift */,
+			);
+			name = First;
+			sourceTree = "<group>";
+		};
+		77E26C611C878ED0005B700A /* Second */ = {
+			isa = PBXGroup;
+			children = (
+				77E26C5E1C87745D005B700A /* SecondTransitionManager.swift */,
+				77E26C5A1C8766E1005B700A /* SecondTableViewController.swift */,
+				77E26C5C1C8767AE005B700A /* MenuViewController.swift */,
+			);
+			name = Second;
+			sourceTree = "<group>";
+		};
 		77F89BD81C86330A0040775B = {
 			isa = PBXGroup;
 			children = (
@@ -65,11 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				77F89BE41C86330A0040775B /* AppDelegate.swift */,
-				77F89BFA1C863B6F0040775B /* TransitionManager.swift */,
-				77E26C5E1C87745D005B700A /* SecondTransitionManager.swift */,
-				77F89BE61C86330A0040775B /* FirstViewController.swift */,
-				77E26C5A1C8766E1005B700A /* SecondTableViewController.swift */,
-				77E26C5C1C8767AE005B700A /* MenuViewController.swift */,
+				77E26C601C878EBC005B700A /* First */,
+				77E26C611C878ED0005B700A /* Second */,
 				77F89BF81C86344F0040775B /* ThirdViewController.swift */,
 				77F89BEA1C86330A0040775B /* Main.storyboard */,
 				77F89BED1C86330A0040775B /* Assets.xcassets */,
