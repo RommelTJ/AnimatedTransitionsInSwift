@@ -68,8 +68,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXc-sq-5IO">
-                                <rect key="frame" x="20" y="513" width="560" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXc-sq-5IO">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
                                 <state key="normal" title="Hide"/>
                                 <connections>
                                     <segue destination="yVY-7z-ZJS" kind="unwind" unwindAction="unwindToViewController:" id="bhI-bh-ame"/>
