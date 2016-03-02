@@ -9,7 +9,8 @@
 import UIKit
 
 class TransitionManager: NSObject {
-    //Code not necessary in our implementation.
+    //Properties
+    var isPresenting = true
 }
 
 // MARK: UIViewControllerAnimatedTransitioning protocol methods
@@ -17,6 +18,7 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
     
     //Animate a change from one ViewController to another.
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+
         //Get reference to our fromView, toView and the container view that we should perform the transition in.
         let container = transitionContext.containerView()
         let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
@@ -27,7 +29,11 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
         let offScreenLeft = CGAffineTransformMakeTranslation(-container!.frame.width, 0)
         
         //Start the toView to the right of the screen.
-        toView.transform = offScreenRight
+        if isPresenting {
+            toView.transform = offScreenRight
+        } else {
+            toView.transform = offScreenLeft
+        }
         
         //Add both views to our view controller.
         container!.addSubview(toView)
@@ -43,7 +49,11 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
         //for a little bounce.
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
             
-            fromView.transform = offScreenLeft
+            if self.isPresenting {
+                fromView.transform = offScreenLeft
+            } else {
+                fromView.transform = offScreenRight
+            }
             toView.transform = CGAffineTransformIdentity
             
             }, completion: { finished in
@@ -64,10 +74,12 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
 extension TransitionManager: UIViewControllerTransitioningDelegate {
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        isPresenting = true
         return self
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        isPresenting = false
         return self
     }
 }
