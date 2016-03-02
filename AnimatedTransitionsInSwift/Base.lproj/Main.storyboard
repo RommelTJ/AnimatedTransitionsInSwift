@@ -292,7 +292,7 @@
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="KkH-bd-YJe"/>
                                         <barButtonItem systemItem="add" id="sge-H6-Yd3">
                                             <connections>
-                                                <segue destination="4zI-Uk-4DU" kind="presentation" id="1Tb-Co-NDZ"/>
+                                                <segue destination="4zI-Uk-4DU" kind="presentation" modalPresentationStyle="overFullScreen" id="1Tb-Co-NDZ"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="0Ot-DS-o6M"/>
