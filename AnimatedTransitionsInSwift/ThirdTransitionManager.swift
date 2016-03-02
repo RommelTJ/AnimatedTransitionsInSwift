@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ThirdTransitionManager: NSObject {
+class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
     //Properties
-    var isPresenting = true
+    private var isPresenting = true
+    private var isInteractive = false
 }
 
 // MARK: UIViewControllerAnimatedTransitioning protocol methods
@@ -139,5 +140,30 @@ extension ThirdTransitionManager: UIViewControllerTransitioningDelegate {
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = false
         return self
+    }
+    
+    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if isInteractive {
+            return self
+        } else {
+            return nil
+        }
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if isInteractive {
+            return self
+        } else {
+            return nil
+        }
+    }
+    
+    
+}
+
+//MARK: UIViewControllerInteractiveTransitioning protocol methods
+extension ThirdMenuViewController: UIViewControllerInteractiveTransitioning {
+    func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
+        //TODO
     }
 }
