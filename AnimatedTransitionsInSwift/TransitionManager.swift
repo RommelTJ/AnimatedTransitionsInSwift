@@ -25,15 +25,25 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
         let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
         
         //Set up from 2D transforms that we'll use in the animation.
-        let offScreenRight = CGAffineTransformMakeTranslation(container!.frame.width, 0)
-        let offScreenLeft = CGAffineTransformMakeTranslation(-container!.frame.width, 0)
+        let π : CGFloat = 3.14159265359
+        
+        let offScreenRotateIn = CGAffineTransformMakeRotation(-π/2)
+        let offScreenRotateOut = CGAffineTransformMakeRotation(π/2)
         
         //Start the toView to the right of the screen.
         if isPresenting {
-            toView.transform = offScreenRight
+            toView.transform = offScreenRotateIn
         } else {
-            toView.transform = offScreenLeft
+            toView.transform = offScreenRotateOut
         }
+        
+        //Set the anchor point so that rotations happen from the top-left corner
+        toView.layer.anchorPoint = CGPoint(x:0, y:0)
+        fromView.layer.anchorPoint = CGPoint(x:0, y:0)
+        
+        //Updating the anchor point also moves the position to we have to move the center position to the top-left to compensate
+        toView.layer.position = CGPoint(x:0, y:0)
+        fromView.layer.position = CGPoint(x:0, y:0)
         
         //Add both views to our view controller.
         container!.addSubview(toView)
@@ -50,9 +60,9 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
             
             if self.isPresenting {
-                fromView.transform = offScreenLeft
+                fromView.transform = offScreenRotateIn
             } else {
-                fromView.transform = offScreenRight
+                fromView.transform = offScreenRotateOut
             }
             toView.transform = CGAffineTransformIdentity
             
