@@ -10,12 +10,14 @@
 		77E26C5B1C8766E1005B700A /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E26C5A1C8766E1005B700A /* SecondTableViewController.swift */; };
 		77E26C5D1C8767AE005B700A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E26C5C1C8767AE005B700A /* MenuViewController.swift */; };
 		77E26C5F1C87745D005B700A /* SecondTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E26C5E1C87745D005B700A /* SecondTransitionManager.swift */; };
+		77E26C641C8797D2005B700A /* ThirdTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E26C631C8797D2005B700A /* ThirdTransitionManager.swift */; };
+		77E26C661C879805005B700A /* ThirdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E26C651C879805005B700A /* ThirdTableViewController.swift */; };
+		77E26C681C879825005B700A /* ThirdMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E26C671C879825005B700A /* ThirdMenuViewController.swift */; };
 		77F89BE51C86330A0040775B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F89BE41C86330A0040775B /* AppDelegate.swift */; };
 		77F89BE71C86330A0040775B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F89BE61C86330A0040775B /* FirstViewController.swift */; };
 		77F89BEC1C86330A0040775B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F89BEA1C86330A0040775B /* Main.storyboard */; };
 		77F89BEE1C86330A0040775B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F89BED1C86330A0040775B /* Assets.xcassets */; };
 		77F89BF11C86330A0040775B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77F89BEF1C86330A0040775B /* LaunchScreen.storyboard */; };
-		77F89BF91C86344F0040775B /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F89BF81C86344F0040775B /* ThirdViewController.swift */; };
 		77F89BFB1C863B6F0040775B /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F89BFA1C863B6F0040775B /* TransitionManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,9 @@
 		77E26C5A1C8766E1005B700A /* SecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
 		77E26C5C1C8767AE005B700A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		77E26C5E1C87745D005B700A /* SecondTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTransitionManager.swift; sourceTree = "<group>"; };
+		77E26C631C8797D2005B700A /* ThirdTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTransitionManager.swift; sourceTree = "<group>"; };
+		77E26C651C879805005B700A /* ThirdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThirdTableViewController.swift; path = ../ThirdTableViewController.swift; sourceTree = "<group>"; };
+		77E26C671C879825005B700A /* ThirdMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdMenuViewController.swift; sourceTree = "<group>"; };
 		77F89BE11C86330A0040775B /* AnimatedTransitionsInSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimatedTransitionsInSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F89BE41C86330A0040775B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77F89BE61C86330A0040775B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -30,7 +35,6 @@
 		77F89BED1C86330A0040775B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77F89BF01C86330A0040775B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77F89BF21C86330A0040775B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77F89BF81C86344F0040775B /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		77F89BFA1C863B6F0040775B /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +68,16 @@
 			name = Second;
 			sourceTree = "<group>";
 		};
+		77E26C621C879750005B700A /* Third */ = {
+			isa = PBXGroup;
+			children = (
+				77E26C631C8797D2005B700A /* ThirdTransitionManager.swift */,
+				77E26C651C879805005B700A /* ThirdTableViewController.swift */,
+				77E26C671C879825005B700A /* ThirdMenuViewController.swift */,
+			);
+			name = Third;
+			sourceTree = "<group>";
+		};
 		77F89BD81C86330A0040775B = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +100,7 @@
 				77F89BE41C86330A0040775B /* AppDelegate.swift */,
 				77E26C601C878EBC005B700A /* First */,
 				77E26C611C878ED0005B700A /* Second */,
-				77F89BF81C86344F0040775B /* ThirdViewController.swift */,
+				77E26C621C879750005B700A /* Third */,
 				77F89BEA1C86330A0040775B /* Main.storyboard */,
 				77F89BED1C86330A0040775B /* Assets.xcassets */,
 				77F89BEF1C86330A0040775B /* LaunchScreen.storyboard */,
@@ -166,11 +180,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E26C681C879825005B700A /* ThirdMenuViewController.swift in Sources */,
+				77E26C641C8797D2005B700A /* ThirdTransitionManager.swift in Sources */,
 				77F89BFB1C863B6F0040775B /* TransitionManager.swift in Sources */,
 				77E26C5D1C8767AE005B700A /* MenuViewController.swift in Sources */,
+				77E26C661C879805005B700A /* ThirdTableViewController.swift in Sources */,
 				77F89BE51C86330A0040775B /* AppDelegate.swift in Sources */,
 				77E26C5B1C8766E1005B700A /* SecondTableViewController.swift in Sources */,
-				77F89BF91C86344F0040775B /* ThirdViewController.swift in Sources */,
 				77F89BE71C86330A0040775B /* FirstViewController.swift in Sources */,
 				77E26C5F1C87745D005B700A /* SecondTransitionManager.swift in Sources */,
 			);
