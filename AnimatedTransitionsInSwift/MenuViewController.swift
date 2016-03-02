@@ -1,15 +1,17 @@
 //
-//  SecondViewController.swift
+//  MenuViewController.swift
 //  AnimatedTransitionsInSwift
 //
-//  Created by Rommel Rico on 3/1/16.
+//  Created by Rommel Rico on 3/2/16.
 //  Copyright © 2016 Rommel Rico. All rights reserved.
 //
 
 import UIKit
 
-class SecondViewController: UIViewController {
-
+class MenuViewController: UIViewController {
+    //Properties
+    let transitionManager = SecondTransitionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -18,6 +20,4 @@ class SecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-
 }
-
