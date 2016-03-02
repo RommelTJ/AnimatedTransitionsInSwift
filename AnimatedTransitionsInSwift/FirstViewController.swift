@@ -15,6 +15,11 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        //Update the Status Bar style to black
+        UIApplication.sharedApplication().statusBarStyle = .Default
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,6 +38,9 @@ class FirstViewController: UIViewController {
             //Instead of using the default transition animation, we'll ask the segue to
             //use our custom TransitionManager object to manage the transition animation.
             toViewController.transitioningDelegate = self.transitionManager
+            
+            //Update the Status Bar style to white
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
         }
     }
 
