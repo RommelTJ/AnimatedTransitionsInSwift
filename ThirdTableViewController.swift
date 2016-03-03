@@ -9,6 +9,8 @@
 import UIKit
 
 class ThirdTableViewController: UITableViewController {
+    //Properties
+    var transitionManager = ThirdTransitionManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,4 +25,8 @@ class ThirdTableViewController: UITableViewController {
         //Code not necessary in our implementation.
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let menu = segue.destinationViewController as! ThirdMenuViewController
+        menu.transitioningDelegate = self.transitionManager
+    }
 }
