@@ -13,12 +13,20 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
     private var isPresenting = true
     private var isInteractive = false
     private var enterPanGesture: UIScreenEdgePanGestureRecognizer!
+    private var exitPanGesture: UIPanGestureRecognizer!
     var sourceViewController: UIViewController! {
         didSet {
             enterPanGesture = UIScreenEdgePanGestureRecognizer()
             enterPanGesture.addTarget(self, action: "handleOnStagePan:")
             enterPanGesture.edges = UIRectEdge.Left
             sourceViewController.view.addGestureRecognizer(enterPanGesture)
+        }
+    }
+    var menuViewController: UIViewController! {
+        didSet {
+            exitPanGesture = UIPanGestureRecognizer()
+            exitPanGesture.addTarget(self, action: "handleOffStagePan:")
+            menuViewController.view.addGestureRecognizer(exitPanGesture)
         }
     }
     
@@ -36,6 +44,38 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
             self.isInteractive = true
             //Trigger the start of the transition.
             self.sourceViewController.performSegueWithIdentifier("thirdToMenuSegue", sender: self)
+            break
+        case UIGestureRecognizerState.Changed:
+            //Update progress of the transition
+            self.updateInteractiveTransition(d)
+            break
+        default: //.Ended, .Cancelled, .Failed
+            //Finish the animation.
+            self.isInteractive = false
+            if (d > 0.3) {
+                //Threshold crossed: Finish!
+                self.finishInteractiveTransition()
+            } else {
+                //Threshold not crossed: Cancel!
+                self.cancelInteractiveTransition()
+            }
+        }
+    }
+    
+    func handleOffStagePan(pan: UIPanGestureRecognizer) {
+        //How much distance we panned in the parent controller.
+        let translation = pan.translationInView(pan.view)
+        
+        //Translate the above to a percentage.
+        let d = translation.x / (CGRectGetWidth(pan.view!.bounds) * -0.5)
+        
+        //Handle the different gestures.
+        switch (pan.state) {
+        case UIGestureRecognizerState.Began:
+            //Set our interactive flag to true.
+            self.isInteractive = true
+            //Trigger the start of the transition.
+            self.menuViewController.performSegueWithIdentifier("menuToThirdSegue", sender: self)
             break
         case UIGestureRecognizerState.Changed:
             //Update progress of the transition

@@ -30,5 +30,7 @@ class ThirdTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let menu = segue.destinationViewController as! ThirdMenuViewController
         menu.transitioningDelegate = self.transitionManager
+        //Setting a reference in the Transition Manager to the Menu Controller so we can return to it.
+        self.transitionManager.menuViewController = menu
     }
 }
