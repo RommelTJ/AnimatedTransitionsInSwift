@@ -14,12 +14,19 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
     private var isInteractive = false
     private var enterPanGesture: UIScreenEdgePanGestureRecognizer!
     private var exitPanGesture: UIPanGestureRecognizer!
+    private var statusBarBackground: UIView!
     var sourceViewController: UIViewController! {
         didSet {
             enterPanGesture = UIScreenEdgePanGestureRecognizer()
             enterPanGesture.addTarget(self, action: "handleOnStagePan:")
             enterPanGesture.edges = UIRectEdge.Left
             sourceViewController.view.addGestureRecognizer(enterPanGesture)
+            
+            //Create a view to go behind the status bar.
+            statusBarBackground = UIView()
+            statusBarBackground.frame = CGRect(x: 0, y: 0, width: sourceViewController.view.frame.width, height: 20)
+            statusBarBackground.backgroundColor = sourceViewController.view.backgroundColor
+            UIApplication.sharedApplication().keyWindow?.addSubview(statusBarBackground)
         }
     }
     var menuViewController: UIViewController! {
@@ -126,9 +133,10 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
             }
         }
         
-        //Add both views to our container View.
+        //Add our views to our container View.
         container!.addSubview(bottomView)
         container!.addSubview(menuView)
+        container?.addSubview(statusBarBackground)
         
         let duration = self.transitionDuration(transitionContext)
         
@@ -158,6 +166,7 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
                     //We have to manually add our 'toView' back.
                     UIApplication.sharedApplication().keyWindow!.addSubview(screens.toView.view)
                 }
+                UIApplication.sharedApplication().keyWindow?.addSubview(self.statusBarBackground)
         })
     }
     
@@ -173,62 +182,66 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
     func offStageMenuController(thirdMenuViewController: ThirdMenuViewController){
         //Prepare menu to fade out.
         thirdMenuViewController.view.alpha = 0
+        statusBarBackground.backgroundColor = sourceViewController.view.backgroundColor
         
         //Setup paramaters for 2D transitions for animations.
         let topRowOffset: CGFloat = 300
         let middleRowOffset: CGFloat = 150
         let bottomRowOffset: CGFloat = 50
         
-        thirdMenuViewController.textIcon.transform = self.offStage(-topRowOffset)
-        thirdMenuViewController.textLabel.transform = self.offStage(-topRowOffset)
+        thirdMenuViewController.textIcon.transform = offStage(-topRowOffset)
+        thirdMenuViewController.textLabel.transform = offStage(-topRowOffset)
         
-        thirdMenuViewController.photoIcon.transform = self.offStage(topRowOffset)
-        thirdMenuViewController.photoLabel.transform = self.offStage(topRowOffset)
+        thirdMenuViewController.photoIcon.transform = offStage(topRowOffset)
+        thirdMenuViewController.photoLabel.transform = offStage(topRowOffset)
         
-        thirdMenuViewController.quoteIcon.transform = self.offStage(-middleRowOffset)
-        thirdMenuViewController.quoteLabel.transform = self.offStage(-middleRowOffset)
+        thirdMenuViewController.quoteIcon.transform = offStage(-middleRowOffset)
+        thirdMenuViewController.quoteLabel.transform = offStage(-middleRowOffset)
         
-        thirdMenuViewController.linkIcon.transform = self.offStage(middleRowOffset)
-        thirdMenuViewController.linkLabel.transform = self.offStage(middleRowOffset)
+        thirdMenuViewController.linkIcon.transform = offStage(middleRowOffset)
+        thirdMenuViewController.linkLabel.transform = offStage(middleRowOffset)
         
-        thirdMenuViewController.chatIcon.transform = self.offStage(-bottomRowOffset)
-        thirdMenuViewController.chatLabel.transform = self.offStage(-bottomRowOffset)
+        thirdMenuViewController.chatIcon.transform = offStage(-bottomRowOffset)
+        thirdMenuViewController.chatLabel.transform = offStage(-bottomRowOffset)
         
-        thirdMenuViewController.audioIcon.transform = self.offStage(bottomRowOffset)
-        thirdMenuViewController.audioLabel.transform = self.offStage(bottomRowOffset)
+        thirdMenuViewController.audioIcon.transform = offStage(bottomRowOffset)
+        thirdMenuViewController.audioLabel.transform = offStage(bottomRowOffset)
         
     }
     
     func offStageMenuControllerInteractive(thirdMenuViewController: ThirdMenuViewController){
         //Prepare menu to fade out.
         thirdMenuViewController.view.alpha = 0
+        statusBarBackground.backgroundColor = sourceViewController.view.backgroundColor
         
         //Setup paramaters for 2D transitions for animations.
         let offStageOffset: CGFloat = -300
         
-        thirdMenuViewController.textIcon.transform = self.offStage(offStageOffset)
-        thirdMenuViewController.textLabel.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.textIcon.transform = offStage(offStageOffset)
+        thirdMenuViewController.textLabel.transform = offStage(offStageOffset)
         
-        thirdMenuViewController.photoIcon.transform = self.offStage(offStageOffset)
-        thirdMenuViewController.photoLabel.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.photoIcon.transform = offStage(offStageOffset)
+        thirdMenuViewController.photoLabel.transform = offStage(offStageOffset)
         
-        thirdMenuViewController.quoteIcon.transform = self.offStage(offStageOffset)
-        thirdMenuViewController.quoteLabel.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.quoteIcon.transform = offStage(offStageOffset)
+        thirdMenuViewController.quoteLabel.transform = offStage(offStageOffset)
         
-        thirdMenuViewController.linkIcon.transform = self.offStage(offStageOffset)
-        thirdMenuViewController.linkLabel.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.linkIcon.transform = offStage(offStageOffset)
+        thirdMenuViewController.linkLabel.transform = offStage(offStageOffset)
         
-        thirdMenuViewController.chatIcon.transform = self.offStage(offStageOffset)
-        thirdMenuViewController.chatLabel.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.chatIcon.transform = offStage(offStageOffset)
+        thirdMenuViewController.chatLabel.transform = offStage(offStageOffset)
         
-        thirdMenuViewController.audioIcon.transform = self.offStage(offStageOffset)
-        thirdMenuViewController.audioLabel.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.audioIcon.transform = offStage(offStageOffset)
+        thirdMenuViewController.audioLabel.transform = offStage(offStageOffset)
         
     }
     
     func onStageMenuController(thirdMenuViewController: ThirdMenuViewController){
         //Prepare menu to fade in.
         thirdMenuViewController.view.alpha = 1
+        statusBarBackground.backgroundColor = UIColor.whiteColor()
+        
         
         thirdMenuViewController.textIcon.transform = CGAffineTransformIdentity
         thirdMenuViewController.textLabel.transform = CGAffineTransformIdentity
