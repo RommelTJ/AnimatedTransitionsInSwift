@@ -126,14 +126,16 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
         
         //Prepare menu items to slide in.
         if (self.isPresenting) {
-            /* Interactive presentation.
+            /* Interactive presentation. */
             if (self.isInteractive) {
                 self.offStageMenuControllerInteractive(thirdMenuViewController) //offStage for Interactive
             } else {
                 self.offStageMenuController(thirdMenuViewController) //offStage for Default (pushing the button)
             }
-            */
+
+            /* Hamburger-style presentation.
             self.offStageMenuControllerInteractive(thirdMenuViewController)
+            */
         }
         
         //Add our views to our container View.
@@ -148,19 +150,22 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
             
             if (self.isPresenting){
                 self.onStageMenuController(thirdMenuViewController) //Onstage items: slide in
-                //Hamburger type slide-in.
+                /* Hamburger type slide-in.
                 bottomView.transform = self.offStage(290)
+                */
             }
             else {
-                /* Interactive presentation.
+                /* Interactive presentation. */
                 if (self.isInteractive) {
                     self.offStageMenuControllerInteractive(thirdMenuViewController) //offstage for Interactive
                 } else {
                     self.offStageMenuController(thirdMenuViewController) //offstage for Default (pushing the Cancel button)
                 }
-                */
+
+                /* Hamburger-style presentation.
                 bottomView.transform = CGAffineTransformIdentity
                 self.offStageMenuControllerInteractive(thirdMenuViewController)
+                */
                 
             }
             
@@ -224,10 +229,12 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
         statusBarBackground.backgroundColor = sourceViewController.view.backgroundColor
         
         //Setup paramaters for 2D transitions for animations.
-        /* Interactive presentation with pan gesture.
+        /* Interactive presentation with pan gesture. */
         let offStageOffset: CGFloat = -300
-        */
+
+        /* Hamburger-style presentation.
         let offStageOffset: CGFloat = -200
+        */
         
         thirdMenuViewController.textIcon.transform = offStage(offStageOffset)
         thirdMenuViewController.textLabel.transform = offStage(offStageOffset)
