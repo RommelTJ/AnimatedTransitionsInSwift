@@ -12,6 +12,19 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
     //Properties
     private var isPresenting = true
     private var isInteractive = false
+    private var enterPanGesture: UIScreenEdgePanGestureRecognizer!
+    var sourceViewController: UIViewController! {
+        didSet {
+            enterPanGesture = UIScreenEdgePanGestureRecognizer()
+            enterPanGesture.addTarget(self, action: "handleOnStagePan:")
+            enterPanGesture.edges = UIRectEdge.Left
+            sourceViewController.view.addGestureRecognizer(enterPanGesture)
+        }
+    }
+    
+    func handleOnStagePan(pan: UIPanGestureRecognizer) {
+        print("TODO: Handle onstage gesture")
+    }
 }
 
 // MARK: UIViewControllerAnimatedTransitioning protocol methods

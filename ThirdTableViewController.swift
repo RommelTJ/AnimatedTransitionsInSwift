@@ -14,6 +14,8 @@ class ThirdTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Setting a reference in the Transition Manager to this view controller.
+        self.transitionManager.sourceViewController = self
     }
     
     override func didReceiveMemoryWarning() {
