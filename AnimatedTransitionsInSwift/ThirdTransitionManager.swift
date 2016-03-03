@@ -27,7 +27,7 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
         let translation = pan.translationInView(pan.view)
         
         //Translate the above to a percentage.
-        let d = translation.x / CGRectGetWidth((pan.view?.bounds)!) * 0.5
+        let d = translation.x / (CGRectGetWidth(pan.view!.bounds) * 0.5)
         
         //Handle the different gestures.
         switch (pan.state) {
@@ -102,15 +102,17 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
                 //Tell our transitionContext object that we've finished animating
                 if (transitionContext.transitionWasCancelled()) {
                     transitionContext.completeTransition(false)
+                    //We have to manually add our 'toView' back.
+                    UIApplication.sharedApplication().keyWindow!.addSubview(screens.fromView.view)
                 } else {
                     transitionContext.completeTransition(true)
+                    //We have to manually add our 'toView' back.
+                    UIApplication.sharedApplication().keyWindow!.addSubview(screens.toView.view)
                 }
-                //We have to manually add our 'toView' back.
-                UIApplication.sharedApplication().keyWindow!.addSubview(screens.toView.view)
         })
     }
     
-    // return how many seconds the transiton animation will take
+    //Return how many seconds the transiton animation will take
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.5
     }

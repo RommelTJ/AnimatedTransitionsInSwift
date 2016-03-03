@@ -10,7 +10,6 @@ import UIKit
 
 class ThirdMenuViewController: UIViewController {
     //Properties
-    let transitionManager = ThirdTransitionManager()
     @IBOutlet weak var textIcon: UIImageView!
     @IBOutlet weak var photoIcon: UIImageView!
     @IBOutlet weak var quoteIcon: UIImageView!
@@ -26,7 +25,6 @@ class ThirdMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.transitioningDelegate = self.transitionManager
     }
 
     override func didReceiveMemoryWarning() {
