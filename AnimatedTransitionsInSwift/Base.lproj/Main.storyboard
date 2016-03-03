@@ -777,7 +777,7 @@
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="aOS-W8-8te"/>
                                         <barButtonItem systemItem="add" id="gJd-iw-SCt">
                                             <connections>
-                                                <segue destination="Xxc-uB-DhR" kind="presentation" modalPresentationStyle="overFullScreen" id="CUd-5l-qzD"/>
+                                                <segue destination="Xxc-uB-DhR" kind="presentation" identifier="thirdToMenuSegue" modalPresentationStyle="overFullScreen" id="CUd-5l-qzD"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="rAI-zE-QqR"/>

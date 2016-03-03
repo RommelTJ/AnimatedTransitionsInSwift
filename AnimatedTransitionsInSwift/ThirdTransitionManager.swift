@@ -23,7 +23,29 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
     }
     
     func handleOnStagePan(pan: UIPanGestureRecognizer) {
-        print("TODO: Handle onstage gesture")
+        //How much distance we panned in the parent controller.
+        let translation = pan.translationInView(pan.view)
+        
+        //Translate the above to a percentage.
+        let d = translation.x / CGRectGetWidth((pan.view?.bounds)!) * 0.5
+        
+        //Handle the different gestures.
+        switch (pan.state) {
+        case UIGestureRecognizerState.Began:
+            //Set our interactive flag to true.
+            self.isInteractive = true
+            //Trigger the start of the transition.
+            self.sourceViewController.performSegueWithIdentifier("thirdToMenuSegue", sender: self)
+            break
+        case UIGestureRecognizerState.Changed:
+            //Update progress of the transition
+            self.updateInteractiveTransition(d)
+            break
+        default: //.Ended, .Cancelled, .Failed
+            //Finish the animation.
+            self.isInteractive = false
+            self.finishInteractiveTransition()
+        }
     }
 }
 
