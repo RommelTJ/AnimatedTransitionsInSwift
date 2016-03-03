@@ -118,8 +118,12 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
         let bottomView = bottomViewController.view
         
         //Prepare menu items to slide in.
-        if (self.isPresenting){
-            self.offStageMenuController(thirdMenuViewController)
+        if (self.isPresenting) {
+            if (self.isInteractive) {
+                self.offStageMenuControllerInteractive(thirdMenuViewController) //offStage for Interactive
+            } else {
+                self.offStageMenuController(thirdMenuViewController) //offStage for Default (pushing the button)
+            }
         }
         
         //Add both views to our container View.
@@ -135,7 +139,12 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
                 self.onStageMenuController(thirdMenuViewController) // onstage items: slide in
             }
             else {
-                self.offStageMenuController(thirdMenuViewController) // offstage items: slide out
+                if (self.isInteractive) {
+                    self.offStageMenuControllerInteractive(thirdMenuViewController) //offstage for Interactive
+                } else {
+                    self.offStageMenuController(thirdMenuViewController) //offstage for Default (pushing the Cancel button)
+                }
+                
             }
             
             }, completion: { finished in
@@ -187,6 +196,33 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
         
         thirdMenuViewController.audioIcon.transform = self.offStage(bottomRowOffset)
         thirdMenuViewController.audioLabel.transform = self.offStage(bottomRowOffset)
+        
+    }
+    
+    func offStageMenuControllerInteractive(thirdMenuViewController: ThirdMenuViewController){
+        //Prepare menu to fade out.
+        thirdMenuViewController.view.alpha = 0
+        
+        //Setup paramaters for 2D transitions for animations.
+        let offStageOffset: CGFloat = -300
+        
+        thirdMenuViewController.textIcon.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.textLabel.transform = self.offStage(offStageOffset)
+        
+        thirdMenuViewController.photoIcon.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.photoLabel.transform = self.offStage(offStageOffset)
+        
+        thirdMenuViewController.quoteIcon.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.quoteLabel.transform = self.offStage(offStageOffset)
+        
+        thirdMenuViewController.linkIcon.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.linkLabel.transform = self.offStage(offStageOffset)
+        
+        thirdMenuViewController.chatIcon.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.chatLabel.transform = self.offStage(offStageOffset)
+        
+        thirdMenuViewController.audioIcon.transform = self.offStage(offStageOffset)
+        thirdMenuViewController.audioLabel.transform = self.offStage(offStageOffset)
         
     }
     
