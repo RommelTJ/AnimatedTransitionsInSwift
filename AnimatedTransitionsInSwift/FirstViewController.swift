@@ -9,17 +9,40 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
+    //Properties
+    let transitionManager = TransitionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //Update the Status Bar style to black
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    //IBAction required to use an Exit Segue.
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        //Code not necessary in our implementation.
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "firstCustomSegue" {
+            //This gets a reference to the screen that we're about to transition to.
+            let toViewController = segue.destinationViewController as UIViewController
+            
+            //Instead of using the default transition animation, we'll ask the segue to
+            //use our custom TransitionManager object to manage the transition animation.
+            toViewController.transitioningDelegate = self.transitionManager
+            
+            //Update the Status Bar style to white
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
+        }
+    }
 
 }
 
