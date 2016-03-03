@@ -44,7 +44,13 @@ class ThirdTransitionManager: UIPercentDrivenInteractiveTransition {
         default: //.Ended, .Cancelled, .Failed
             //Finish the animation.
             self.isInteractive = false
-            self.finishInteractiveTransition()
+            if (d > 0.3) {
+                //Threshold crossed: Finish!
+                self.finishInteractiveTransition()
+            } else {
+                //Threshold not crossed: Cancel!
+                self.cancelInteractiveTransition()
+            }
         }
     }
 }
@@ -94,8 +100,11 @@ extension ThirdTransitionManager: UIViewControllerAnimatedTransitioning {
             
             }, completion: { finished in
                 //Tell our transitionContext object that we've finished animating
-                transitionContext.completeTransition(true)
-                
+                if (transitionContext.transitionWasCancelled()) {
+                    transitionContext.completeTransition(false)
+                } else {
+                    transitionContext.completeTransition(true)
+                }
                 //We have to manually add our 'toView' back.
                 UIApplication.sharedApplication().keyWindow!.addSubview(screens.toView.view)
         })
